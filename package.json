@@ -1,0 +1,58 @@
+{
+  "name": "@builtonaws/s3-cloudfront-redirect",
+  "version": "0.1.0",
+  "type": "commonjs",
+  "description": "Construct to build a redirect with an S3 bucket and a CloudFront distribution.",
+  "keywords": [
+    "awscdk",
+    "typescript",
+    "aws",
+    "route53",
+    "s3",
+    "cloudfront",
+    "static"
+  ],
+  "homepage": "https://github.com/builtonaws/s3-cloudfront-redirect",
+  "bugs": "https://github.com/builtonaws/s3-cloudfront-redirect/issues",
+  "repository": "github:builtonaws/s3-cloudfront-redirect",
+  "author": {
+    "name": "João N. Matos",
+    "email": "me@joaonmatos.com",
+    "url": "https://www.joaonmatos.com/"
+  },
+  "license": "Apache-2.0",
+  "engines": {
+    "node": ">=18"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "main": "lib/index.js",
+  "types": "lib/index.d.ts",
+  "files": ["docs", "lib/index.d.ts"],
+  "scripts": {
+    "changelog": "changelog",
+    "clean": "del **/*.{d.ts,js}",
+    "doc": "typedoc lib/index.ts",
+    "prebuild": "npm run lint",
+    "build": "tsc",
+    "postbuild": "npm run doc",
+    "lint": "biome check",
+    "lint:fix": "biome check --write",
+    "prepublishOnly": "npm run build"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "^1.9.4",
+    "@types/node": "^18.19.68",
+    "aws-cdk-lib": "2.173.0",
+    "constructs": "^10.4.2",
+    "del-cli": "^6.0.0",
+    "generate-changelog": "^1.8.0",
+    "typedoc": "^0.27.4",
+    "typescript": "^5.7.2"
+  },
+  "peerDependencies": {
+    "aws-cdk-lib": "^2.0.0",
+    "constructs": "^10.0.0"
+  }
+}
