@@ -1,6 +1,6 @@
 {
   "name": "@builtonaws/s3-cloudfront-redirect",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "type": "commonjs",
   "description": "Construct to build a redirect with an S3 bucket and a CloudFront distribution.",
   "keywords": [
