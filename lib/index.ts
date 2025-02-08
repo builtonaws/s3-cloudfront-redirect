@@ -6,6 +6,7 @@ import {
   ARecord,
   AaaaRecord,
   type IHostedZone,
+  type IRecordSet,
   RecordTarget,
 } from "aws-cdk-lib/aws-route53";
 import { CloudFrontTarget } from "aws-cdk-lib/aws-route53-targets";
@@ -52,6 +53,16 @@ export class S3CloudFrontRedirect extends Construct {
    */
   readonly targetDomain: string;
 
+  /**
+   * DNS record for IPv4 resolution
+   */
+  readonly aRecord: IRecordSet;
+
+  /**
+   * DNS record for IPv6 resolution
+   */
+  readonly aaaaRecord: IRecordSet;
+
   constructor(scope: Construct, id: string, props: S3CloudFrontRedirectProps) {
     super(scope, id);
 
@@ -78,13 +89,13 @@ export class S3CloudFrontRedirect extends Construct {
       httpVersion: HttpVersion.HTTP2_AND_3,
     });
 
-    new ARecord(this, "ARecord", {
+    this.aRecord = new ARecord(this, "ARecord", {
       zone: this.hostedZone,
       recordName: `${this.originDomain}.`,
       target: RecordTarget.fromAlias(new CloudFrontTarget(distribution)),
     });
 
-    new AaaaRecord(this, "AaaaRecord", {
+    this.aaaaRecord = new AaaaRecord(this, "AaaaRecord", {
       zone: this.hostedZone,
       recordName: `${this.originDomain}.`,
       target: RecordTarget.fromAlias(new CloudFrontTarget(distribution)),
